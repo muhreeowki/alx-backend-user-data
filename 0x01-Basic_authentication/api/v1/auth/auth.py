@@ -22,13 +22,22 @@ class Auth:
         Return:
             - True if path is not in excluded_paths, else False
         """
-        if path is None or excluded_paths is None or excluded_paths == []:
+        if path is None:
             return True
-        if path in excluded_paths:
+        elif excluded_paths is None or excluded_paths == []:
+            return True
+        elif path in excluded_paths:
             return False
-        for i in excluded_paths:
-            if i.startswith(path) or path.startswith(i):
-                return False
+        else:
+            for i in excluded_paths:
+                if i.startswith(path):
+                    return False
+                if path.startswith(i):
+                    return False
+                if i[-1] == "*":
+                    if path.startswith(i[:-1]):
+                        return False
+        return True
 
         return True
 
