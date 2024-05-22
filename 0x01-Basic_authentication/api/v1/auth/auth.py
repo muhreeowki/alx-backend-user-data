@@ -10,7 +10,8 @@ class Auth:
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """
         Function that checks if auth is required
-            Return: False
+        Return:
+            - False
         """
         return False
 
