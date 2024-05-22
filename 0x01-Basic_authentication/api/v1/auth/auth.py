@@ -22,7 +22,15 @@ class Auth:
         Return:
             - True if path is not in excluded_paths, else False
         """
-        return False
+        if path is None or excluded_paths is None or excluded_paths == []:
+            return True
+        if path in excluded_paths:
+            return False
+        for i in excluded_paths:
+            if i.startswith(path) or path.startswith(i):
+                return False
+
+        return True
 
     def authorization_header(self, request=None) -> str:
         """
